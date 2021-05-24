@@ -1,10 +1,36 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace MiniprojektEFCRUD2
 {
     partial class Program
     {
+
+        private static void CreateFn(ProductContext productDB)
+        {
+
+            while (true)
+            {
+                Console.WriteLine("\nTo enter new Product for Laptop Computers 'L' for Mobile Phones 'M', Exit write 'Q' ");
+                ConsoleKey input = Console.ReadKey(true).Key;
+                if (input == ConsoleKey.Q)
+                {
+                    break;
+                }
+                else if (input == ConsoleKey.L)
+                {
+                    CreateLaptops(productDB);
+                }
+                else if (input == ConsoleKey.M)
+                {
+                    CreateMobiles(productDB);
+                }
+
+
+            }
+
+        }
 
         private static void CreateLaptops(ProductContext productDB)
         {

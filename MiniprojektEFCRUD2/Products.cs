@@ -37,7 +37,6 @@ namespace MiniprojektEFCRUD2
         }
     }
 
-
     class Mobile : Product
     {
         public Mobile(string purchaseDate, string modelName, string color, int price)
@@ -48,7 +47,4 @@ namespace MiniprojektEFCRUD2
             Price = price;
         }
     }
-
-
 }
-

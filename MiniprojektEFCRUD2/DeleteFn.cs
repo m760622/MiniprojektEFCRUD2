@@ -9,7 +9,7 @@ namespace MiniprojektEFCRUD2
         {
             while (true)
             {
-                Console.WriteLine("\n To delete Laptop Computers 'l' for Mobile Phones 'm', To Exit write 'q' ");
+                Console.WriteLine("\n To delete Laptop Computers 'l' for Mobile Phones 'm', Exit write 'q' ");
                 ConsoleKey input = Console.ReadKey(true).Key;
 
                 if (input == ConsoleKey.Q)
@@ -27,8 +27,6 @@ namespace MiniprojektEFCRUD2
                 ReadFn(productDB);
             }
         }
-
-
         private static void DeleteBranch(ProductContext productDB)
         {
             int id = IntCheck("Id to delete");

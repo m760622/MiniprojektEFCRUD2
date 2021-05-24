@@ -15,19 +15,19 @@ namespace MiniprojektEFCRUD2
 
             while (true)
             {
-                Console.WriteLine("\nEnter new Product, for Laptop Computers 'l' for Mobile Phones 'm', To Delete write 'd', To Exit write 'q' ");
+                Console.WriteLine("\n To Create new Product 'C', Delete 'D', Update 'U', Exit 'Q' ");
                 ConsoleKey input = Console.ReadKey(true).Key;
                 if (input == ConsoleKey.Q)
                 {
                     break;
                 }
-                else if (input == ConsoleKey.L)
+                else if (input == ConsoleKey.C)
                 {
-                    CreateLaptops(productDB);
+                    CreateFn(productDB);
                 }
-                else if (input == ConsoleKey.M)
+                else if (input == ConsoleKey.U)
                 {
-                    CreateMobiles(productDB);
+                    UpdateFn(productDB);
                 }
 
                 else if (input == ConsoleKey.D)
@@ -36,7 +36,6 @@ namespace MiniprojektEFCRUD2
                 }
                 productDB.SaveChanges();
             }
-           // productDB.SaveChanges();
             ReadFn(productDB);
             Console.ReadLine();
         }
