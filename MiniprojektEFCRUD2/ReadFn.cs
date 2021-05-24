@@ -53,7 +53,7 @@ namespace MiniprojektEFCRUD2
                 totalPriceM = totalPriceM + mobile.Price;
 
                 var branchName = productDB.Branches.Find(mobile.BranchId).Name;
-                msg = " - "  + $"{mobile.Id}".PadRight(15) + $"{branchName}".PadRight(20) + mobile.PurchaseDate.PadRight(20) + mobile.ModelName.PadRight(20) + mobile.Color.PadRight(25) + "-".PadRight(20) + (mobile as Mobile).Price;
+                msg = " - "  + $"{mobile.Id}".PadRight(15) + $"{branchName}".PadRight(20) + mobile.PurchaseDate.PadRight(20) + mobile.ModelName.PadRight(20) + "-".PadRight(25) + mobile.Color.PadRight(20)  + (mobile as Mobile).Price;
                 WriteLineColor(msg, DateValidation(mobile.PurchaseDate));
                 File.AppendAllText("ResultFile.txt", msg + Environment.NewLine);
             }
