@@ -21,6 +21,8 @@ namespace MiniprojektEFCRUD2
             Console.WriteLine(msgTitle);
             File.WriteAllText("ResultFile.txt", msgTitle + Environment.NewLine);
 
+            int totalPriceL = 0;
+            int totalPriceM = 0;
             string msg = "";
             foreach (Product laptop in sortedLaptops)
             {
@@ -31,12 +33,13 @@ namespace MiniprojektEFCRUD2
                     File.AppendAllText("ResultFile.txt", msg + Environment.NewLine);
                 }
                 indexL++;
-                // var branchName = productDB.Branches.Where(branchIn => branchIn.Id == laptop.Id).Select(branchIn => branchIn.Name);   //.FirstOrDefault();
-                string branchName = " - ";
+                totalPriceL = totalPriceL + laptop.Price;
+                var branchName = productDB.Branches.Find(laptop.BranchId).Name;
                 msg = " - " + $"{laptop.Id}".PadRight(15) + $"{branchName}".PadRight(20) + laptop.PurchaseDate.PadRight(20) + laptop.ModelName.PadRight(20) + (laptop as Laptop).SystemOperation.PadRight(25) + laptop.Color.PadRight(20) + (laptop as Laptop).Price;
                 WriteLineColor(msg, DateValidation(laptop.PurchaseDate));
                 File.AppendAllText("ResultFile.txt", msg + Environment.NewLine);
             }
+            WriteLineColor("totalPrice is: " + totalPriceL, ConsoleColor.Green);
 
             foreach (Product mobile in sortedMobiles)
             {
@@ -47,11 +50,14 @@ namespace MiniprojektEFCRUD2
                     File.AppendAllText("ResultFile.txt", msg + Environment.NewLine);
                 }
                 indexM++;
-                string branchName = " - ";
-                msg = " - " + $"{mobile.Id}".PadRight(15) + $"{branchName}".PadRight(20) + mobile.PurchaseDate.PadRight(20) + mobile.ModelName.PadRight(20) + mobile.Color.PadRight(25) + "-".PadRight(20) + (mobile as Mobile).Price;
+                totalPriceM = totalPriceM + mobile.Price;
+
+                var branchName = productDB.Branches.Find(mobile.BranchId).Name;
+                msg = " - "  + $"{mobile.Id}".PadRight(15) + $"{branchName}".PadRight(20) + mobile.PurchaseDate.PadRight(20) + mobile.ModelName.PadRight(20) + mobile.Color.PadRight(25) + "-".PadRight(20) + (mobile as Mobile).Price;
                 WriteLineColor(msg, DateValidation(mobile.PurchaseDate));
                 File.AppendAllText("ResultFile.txt", msg + Environment.NewLine);
             }
+            WriteLineColor("totalPrice is: " + totalPriceM, ConsoleColor.Green);
         }
     }
  }

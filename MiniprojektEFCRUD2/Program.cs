@@ -34,7 +34,8 @@ namespace MiniprojektEFCRUD2
                 {
                     DeleteFn(productDB);
                 }
-                productDB.SaveChanges();
+
+                ReadFn(productDB);
             }
             ReadFn(productDB);
             Console.ReadLine();

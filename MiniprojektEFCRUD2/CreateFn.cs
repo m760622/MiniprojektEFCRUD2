@@ -26,10 +26,8 @@ namespace MiniprojektEFCRUD2
                 {
                     CreateMobiles(productDB);
                 }
-
-
+                productDB.SaveChanges();
             }
-
         }
 
         private static void CreateLaptops(ProductContext productDB)
@@ -40,18 +38,21 @@ namespace MiniprojektEFCRUD2
             string systemOperation = StringCheck("System Operation");
             string color = StringCheck("Color");
             int price = IntCheck("Price");
+            int branchId = 0;
             Branch foundBranch = productDB.Branches.Where(branch => branch.Name == branchName).FirstOrDefault();
             if (foundBranch != null)
             {
                 foundBranch.Laptops = new List<Laptop>();
-                Laptop newProduct = new Laptop(purchaseDate, modelName, systemOperation, color, price);
+                branchId = foundBranch.Id;
+                Laptop newProduct = new Laptop(purchaseDate, modelName, systemOperation, color, price, branchId);
                 foundBranch.Laptops.Add(newProduct);
             }
             else
             {
                 Branch newBranch = new Branch(branchName);
                 newBranch.Laptops = new List<Laptop>();
-                Laptop newProduct = new Laptop(purchaseDate, modelName, systemOperation, color, price);
+                branchId = newBranch.Id;
+                Laptop newProduct = new Laptop(purchaseDate, modelName, systemOperation, color, price, branchId);
                 newBranch.Laptops.Add(newProduct);
                 productDB.Branches.Add(newBranch);
             }
@@ -64,18 +65,21 @@ namespace MiniprojektEFCRUD2
             string modelName = StringCheck("Model Name");
             string color = StringCheck("Color");
             int price = IntCheck("Price");
+            int branchId = 0;
             Branch foundBranch = productDB.Branches.Where(branch => branch.Name == branchName).FirstOrDefault();
             if (foundBranch != null)
             {
                 foundBranch.Mobiles = new List<Mobile>();
-                Mobile newProduct = new Mobile(purchaseDate, modelName, color, price);
+                branchId = foundBranch.Id;
+                Mobile newProduct = new Mobile(purchaseDate, modelName, color, price, branchId);
                 foundBranch.Mobiles.Add(newProduct);
             }
             else
             {
                 Branch newBranch = new Branch(branchName);
                 newBranch.Mobiles = new List<Mobile>();
-                Mobile newProduct = new Mobile(purchaseDate, modelName, color, price);
+                branchId = newBranch.Id;
+                Mobile newProduct = new Mobile(purchaseDate, modelName, color, price, branchId);
                 newBranch.Mobiles.Add(newProduct);
                 productDB.Branches.Add(newBranch);
             }
